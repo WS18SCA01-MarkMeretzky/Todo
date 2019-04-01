@@ -1,0 +1,14 @@
+{
+    "meretzky": {
+        "awscloudformation": {
+            "AuthRoleName": "todo-20190331235452-authRole",
+            "UnauthRoleArn": "arn:aws:iam::556897858893:role/todo-20190331235452-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::556897858893:role/todo-20190331235452-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "todo-20190331235452-deployment",
+            "UnauthRoleName": "todo-20190331235452-unauthRole",
+            "StackName": "todo-20190331235452",
+            "StackId": "arn:aws:cloudformation:us-east-1:556897858893:stack/todo-20190331235452/e7cc3000-5431-11e9-a72b-12ccfe651680"
+        }
+    }
+}
