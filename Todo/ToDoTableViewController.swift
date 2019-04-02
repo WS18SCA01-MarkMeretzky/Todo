@@ -101,7 +101,7 @@ class ToDoTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender);
         
-        guard let indexPath = tableView.indexPathForSelectedRow else {
+        guard let indexPath: IndexPath = tableView.indexPathForSelectedRow else {
             //The user pressed the + button, so there is no information we need to
             //send on ahead to the ViewController.
             return;
