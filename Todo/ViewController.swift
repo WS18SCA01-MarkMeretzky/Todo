@@ -21,11 +21,11 @@ class ViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if let todo: Todo = todo {
-            viewController.navigationItem.title = "Update To Do";
+            navigationItem.title = "Update To Do";
             nameTextField.text = todo.name;
             descriptionTextField.text = todo.description;
         } else {
-            viewController.navigationItem.title = "New To Do";
+            navigationItem.title = "New To Do";
         }
     }
     
@@ -33,12 +33,17 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender);
- 
+
         guard segue.identifier == "SaveSegue" else {
-            return;  //User pressed Cancel, so do nothing.
+            //User pressed Cancel, so no information needs to be transmitted
+            //back to the TodoTableViewController.
+            return;
         }
         
-        todo = Todo(name: nameTextField.text ?? "", description: descriptionTextField ?? "");
+        todo = Todo(
+            name: nameTextField.text ?? "",
+            description: descriptionTextField.text ?? ""
+        );
     }
 
 }
