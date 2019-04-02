@@ -42,7 +42,7 @@ class ToDoTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TodoTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell);
+        let cell: TodoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell;
 
         // Configure the cell ...
         let todo: Todo = todos[indexPath.row];
@@ -64,9 +64,8 @@ class ToDoTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
             let todo: Todo = todos[indexPath.row];
-            runDeleteMutation(todo);  //removes the instance from todos, and removes the cell from the table
+            runDeleteMutation(todo);  //also removes the instance from todos, and removes the cell from the table
             //tableView.deleteRows(at: [indexPath], with: .fade);
         }   
     }
@@ -190,7 +189,7 @@ class ToDoTableViewController: UITableViewController {
     func runCreateMutation(_ todo: Todo) {
         print("runCreateMutation(_:)");
         guard todos.count <= 100 else {
-            print("can't create more than 100 items.");
+            print("Can't create more than 100 Todos.");
             return;
         }
         
