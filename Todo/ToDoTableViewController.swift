@@ -61,21 +61,19 @@ class ToDoTableViewController: UITableViewController {
     */
 
     // Override to support editing the table view.
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             let todo: Todo = todos[indexPath.row];
-            runDeleteMutation(todo);
+            runDeleteMutation(todo);  //removes the instance from todos, and removes the cell from the table
             //tableView.deleteRows(at: [indexPath], with: .fade);
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }   
     }
 
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
     }
     */
 
@@ -97,22 +95,24 @@ class ToDoTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation.
+    // Arrive here when user presses + button or taps a cell.
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender);
+        
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+            //The user pressed the + button, so there is no information we need to
+            //send on ahead to the ViewController.
+            return;
+        }
+        
         // Get the new view controller using segue.destination.
         guard let viewController: ViewController = segue.destination as? ViewController else {
-            return;
+            fatalError("segue to unexpected view controller \(type(of: segue.destination))");
         }
         
-        print("prepare");
         // Pass the selected object to the new view controller.
-        guard let indexPath = tableView.indexPathForSelectedRow else {
-            viewController.navigationItem.title = "New To Do";
-            return;
-        }
-        
         viewController.todo = todos[indexPath.row];
-        viewController.navigationItem.title = "Update To Do";
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
