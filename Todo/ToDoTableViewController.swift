@@ -16,11 +16,13 @@ class ToDoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad();
+        
         //Initialize the appSyncClient property of the TodoTableViewController.
         guard let appDelegate: AppDelegate = UIApplication.shared.delegate as? AppDelegate else {
             fatalError("TodoTableViewController couldn't find AppDelegate");
         }
         appSyncClient = appDelegate.appSyncClient;
+        
         runQuery();
         subscribe();
 
